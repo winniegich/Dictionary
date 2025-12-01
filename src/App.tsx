@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useWordStore } from "./store/wordStore";
-import { getWordDefinition, WordData } from "./api/dictionary";
+import { getWordDefinition, type WordData } from "./api/dictionary";
 import { SearchBar } from "./components/SearchBar";
 import { DefinitionBlock } from "./components/DefinitionBlock";
 import { Card, CardHeader, CardContent } from "./components/Card";
