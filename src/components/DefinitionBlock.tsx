@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { WordData } from "../api/dictionary";
+import {type  WordData } from "../api/dictionary";
 
 interface DefinitionBlockProps {
   wordData: WordData[];
