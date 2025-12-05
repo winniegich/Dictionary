@@ -31,40 +31,85 @@ function DictionaryPage() {
   }, [isSuccess, currentWord, addToHistory]);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-start p-6 text-black">
-      <Card className="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 flex flex-col gap-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex justify-center items-start p-6 text-black">
+  <Card className="w-full max-w-lg bg-white shadow-xl rounded-2xl p-6 flex flex-col gap-6">
+
+    <CardHeader>
+      <h1 className="text-2xl font-bold text-center w-full text-blue-700">
+        Simple Dictionary
+      </h1>
+    </CardHeader>
+
+    <CardContent className="flex flex-col gap-6">
+
+      {/* Search Form */}
+      <SearchBar onSearch={refetch} />
+
+      {/* Loading */}
+      {isLoading && (
+        <p className="text-gray-600 text-center">Searching...</p>
+      )}
+
+      {/* Error */}
+      {isError && (
+        <p className="text-red-600 text-center">
+          Word not found. Check spelling.
+        </p>
+      )}
+
+      {/* Results */}
+      {data && <DefinitionBlock wordData={data} />}
+
+      {/* History */}
+      {searchHistory.length > 0 && (
+        <div className="mt-4">
+          <p className="font-semibold text-gray-700">Recent Searches:</p>
+          <ul className="list-disc pl-5 text-gray-800">
+            {searchHistory.map((word, idx) => (
+              <li key={idx}>{word}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </CardContent>
+
+  </Card>
+</div>
+
+    // <div className="min-h-screen bg-gray-100 flex justify-center items-start p-6 text-black">
+    //   <Card className="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 flex flex-col gap-4">
         
-        {/* Header */}
-        <CardHeader>
-          <h1 className="text-xl font-bold text-center w-full">Simple Dictionary</h1>
-        </CardHeader>
+    //     {/* Header */}
+    //     <CardHeader>
+    //       <h1 className="text-xl font-bold text-center w-full">Simple Dictionary</h1>
+    //     </CardHeader>
 
-        {/* Card Content */}
-        <CardContent className="flex flex-col gap-4">
+    //     {/* Card Content */}
+    //     <CardContent className="flex flex-col gap-4">
 
-          {/* Search Bar */}
-          <SearchBar onSearch={refetch} />
+    //       {/* Search Bar */}
+    //       <SearchBar onSearch={refetch} />
 
-          {/* Status Messages */}
-          {isLoading && <p className="text-gray-500">Looking for the word...</p>}
-          {isError && <p className="text-red-500">Oops! Word not found.</p>}
+    //       {/* Status Messages */}
+    //       {isLoading && <p className="text-gray-500">Looking for the word...</p>}
+    //       {isError && <p className="text-red-500">Oops! Word not found.</p>}
 
-          {/* Word Definitions */}
-          {data && <DefinitionBlock wordData={data} />}
+    //       {/* Word Definitions */}
+    //       {data && <DefinitionBlock wordData={data} />}
 
-          {/* Recent Searches */}
-          {searchHistory.length > 0 && (
-            <div className="mt-4">
-              <p className="font-semibold">Recent Words:</p>
-              <ul className="list-disc pl-5">
-                {searchHistory.map((word, idx) => (
-                  <li key={idx}>{word}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+    //       {/* Recent Searches */}
+    //       {searchHistory.length > 0 && (
+    //         <div className="mt-4">
+    //           <p className="font-semibold">Recent Words:</p>
+    //           <ul className="list-disc pl-5">
+    //             {searchHistory.map((word, idx) => (
+    //               <li key={idx}>{word}</li>
+    //             ))}
+    //           </ul>
+    //         </div>
+    //       )}
+    //     </CardContent>
+    //   </Card>
+    // </div>
   );
 }

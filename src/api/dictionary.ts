@@ -32,7 +32,7 @@ export async function getWordDefinition(word: string): Promise<WordData[]> {
   try {
     const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
     return response.data as WordData[];
-  } catch (error) {
+  } catch {
     throw new Error("Word not found");
   }
 }
